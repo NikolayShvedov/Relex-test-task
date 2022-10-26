@@ -7,11 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement(name = "data")
 public class MinValueDto extends ResponseDto{
 
     @JsonProperty(value = "min_value")

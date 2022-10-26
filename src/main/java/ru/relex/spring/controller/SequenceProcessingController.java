@@ -60,7 +60,7 @@ public class SequenceProcessingController {
             path = "/get_max_value",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE }
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
     public MaxValueDto getMaxValue(@RequestBody RequestData request) {
@@ -73,9 +73,8 @@ public class SequenceProcessingController {
             path = "/get_min_value",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public MinValueDto getMinValue(@RequestBody RequestData request) {
         return minValueService.getMinValue(getFileData(request.getPath_file()));
@@ -87,9 +86,8 @@ public class SequenceProcessingController {
             path = "/get_median",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public MedianDto getMedian(@RequestBody RequestData request) {
         return medianService.getMedian(getFileData(request.getPath_file()));
@@ -101,9 +99,8 @@ public class SequenceProcessingController {
             path = "/get_arithmetic_mean",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public ArithmeticMeanDto getArithmeticMean(@RequestBody RequestData request) {
         return arithmeticMeanService.getArithmeticMean(getFileData(request.getPath_file()));
@@ -115,9 +112,8 @@ public class SequenceProcessingController {
             path = "/get_max_asc_sequence",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public MaxASCSequenceDto getMaxASCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
         return maxASCSequenceService.getMaxASCSequenceService(getFileData(request.getPath_file()));
@@ -129,9 +125,8 @@ public class SequenceProcessingController {
             path = "/get_max_desc_sequence",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public MaxDESCSequenceDto getMaxDESCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
         return maxDESCSequenceService.getMaxDESCSequenceService(getFileData(request.getPath_file()));
@@ -143,9 +138,8 @@ public class SequenceProcessingController {
             path = "/",
             method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     @ResponseBody
     public ResponseDto getRequestedOperation(@RequestBody RequestData request) {
         return requestValidationService.validateRequest(request);

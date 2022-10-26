@@ -88,7 +88,15 @@ Response: `{"sequences_DESC":{"1":[47689379,42381213,30043880,12102356,-4774057,
   JSON type: `curl -H 'Content-Type: application/json' -s -XPOST http://localhost:8081/api/ -d '{"path_file":"C:/test_data/10m.txt","operation":"get_max_desc_sequence"}'`  
   XML type: `curl -H 'Content-Type: application/xml' -s -XPOST http://localhost:8081/api/ -d '<data><path_file>C:/test_data/10m.txt</path_file><operation>get_max_desc_sequence</operation></data>'`  
   Response: `{"sequences_DESC":{"1":[47689379,42381213,30043880,12102356,-4774057,-5157723,-11217378,-23005285,-23016933,-39209115,-49148762]}}`  
-
+  
+  JSON type input, XML type output: `curl -H 'Content-Type: application/json' -H 'accept: application/xml' -s -XPOST http://localhost:8081/api/get_max_value -d '{"path_file":"C:/test_data/10m.txt"}'`  
+  Response: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><data><max_value>4999997</max_value></data>`  
+  XML type input, XML type output: `curl -H 'Content-Type: application/xml' -H 'accept: application/xml' -s -XPOST http://localhost:8081/api/get_max_value -d '<data><path_file>C:/test_data/10m.txt</path_file><operation>null</operation></data>'`  
+  Response: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><data><max_value>4999997</max_value></data>`
+  XML type input, JSON type output: `curl -H 'Content-Type: application/xml' -H 'accept: application/json' -s -XPOST http://localhost:8081/api/get_max_value -d '<data><path_file>C:/test_data/10m.txt</path_file><operation>null</operation></data>'`  
+  Response: `{"max_value":49999978}`
+  JSON type input, JSON type output:`curl -H 'Content-Type: application/json' -H 'accept: application/json' -s -XPOST http://localhost:8081/api/get_max_value -d '{"path_file":"C:/test_data/10m.txt"}'`  
+  Response: `{"max_value":49999978}`  
 Таким образом:  
 1) максимальное число = 49999978  
 2) минимальное число = -49999996  

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,6 +17,7 @@ import java.util.HashMap;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement(name = "data")
 public class MaxASCSequenceDto extends ResponseDto{
 
     @JsonProperty(value = "sequences_ASC")
