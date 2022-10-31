@@ -13,7 +13,8 @@ public class RequestDataConverter {
 
     @SneakyThrows
     public static String convertJsonRequestDataToString(String path) {
-        return new String(Files.readAllBytes(Paths.get(new ClassPathResource(path).getURI())));
+        String json = new String(Files.readAllBytes(Paths.get(new ClassPathResource(path).getURI())));
+        return json.replaceAll("\\r\\n", "");
     }
 
     @SneakyThrows

@@ -1,9 +1,10 @@
-package ru.relex.spring.service.max_sequence_numbers.max_asc_sequence;
+package ru.relex.spring.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MaxASCSequenceDto;
-import ru.relex.spring.service.max_sequence_numbers.MaxSequenceCalculatingService;
+import ru.relex.spring.service.MaxSequenceCalculatingService;
+import ru.relex.spring.service.IMaxASCSequenceService;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 @Component
 @RequiredArgsConstructor
-public class MaxASCSequenceServiceImpl extends MaxSequenceCalculatingService implements MaxASCSequenceService {
+public class MaxASCSequenceServiceImpl extends MaxSequenceCalculatingService implements IMaxASCSequenceService {
 
     /**
      * Функция для расчёта самой длинной последовательности идущих подряд чисел, которая увеличивается

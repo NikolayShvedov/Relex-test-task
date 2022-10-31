@@ -1,8 +1,9 @@
-package ru.relex.spring.service.median;
+package ru.relex.spring.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MedianDto;
+import ru.relex.spring.service.IMedianService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import java.util.Collections;
  */
 @Component
 @RequiredArgsConstructor
-public class MedianServiceImpl implements MedianService {
+public class MedianServiceImpl implements IMedianService {
 
 
     /**
