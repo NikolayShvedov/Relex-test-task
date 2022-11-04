@@ -1,9 +1,9 @@
-package ru.relex.spring.service.parser;
+package ru.relex.spring.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public interface FileParserService {
+public interface IFileParserService {
 
     ArrayList<Integer> getListOfIntegersFromTextFile(String path) throws IOException;
 }

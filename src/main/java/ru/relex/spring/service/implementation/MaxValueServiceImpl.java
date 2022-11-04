@@ -1,8 +1,9 @@
-package ru.relex.spring.service.max_value;
+package ru.relex.spring.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MaxValueDto;
+import ru.relex.spring.service.IMaxValueService;
 
 import java.util.Collections;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 @Component
 @RequiredArgsConstructor
-public class MaxValueServiceImpl implements MaxValueService{
+public class MaxValueServiceImpl implements IMaxValueService {
 
 
     /**

@@ -1,10 +1,10 @@
-package ru.relex.spring.service.max_sequence_numbers.max_asc_sequence;
+package ru.relex.spring.service;
 
 import ru.relex.spring.dto.MaxASCSequenceDto;
 
 import java.util.ArrayList;
 
-public interface MaxASCSequenceService {
+public interface IMaxASCSequenceService {
 
     MaxASCSequenceDto getMaxASCSequenceService(ArrayList<Integer> integers);
 }

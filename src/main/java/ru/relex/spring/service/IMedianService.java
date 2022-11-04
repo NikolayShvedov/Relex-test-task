@@ -1,10 +1,10 @@
-package ru.relex.spring.service.median;
+package ru.relex.spring.service;
 
 import ru.relex.spring.dto.MedianDto;
 
 import java.util.ArrayList;
 
-public interface MedianService {
+public interface IMedianService {
 
     MedianDto getMedian(ArrayList<Integer> integers);
 }
