@@ -1,10 +1,9 @@
-package ru.relex.spring.service.implementation;
+package ru.relex.spring.service.max_sequence_numbers.max_desc_sequence;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MaxDESCSequenceDto;
-import ru.relex.spring.service.MaxSequenceCalculatingService;
-import ru.relex.spring.service.IMaxDESCSequenceService;
+import ru.relex.spring.service.max_sequence_numbers.MaxSequenceCalculatingService;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  */
 @Component
 @RequiredArgsConstructor
-public class MaxDESCSequenceServiceImpl extends MaxSequenceCalculatingService implements IMaxDESCSequenceService {
+public class MaxDESCSequenceServiceImpl extends MaxSequenceCalculatingService implements MaxDESCSequenceService {
 
 
     /**

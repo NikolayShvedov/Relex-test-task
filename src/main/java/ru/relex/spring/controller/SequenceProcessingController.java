@@ -4,51 +4,47 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.spring.dto.*;
 import ru.relex.spring.dto.request.RequestData;
-import ru.relex.spring.service.IArithmeticMeanService;
-import ru.relex.spring.service.IMaxASCSequenceService;
-import ru.relex.spring.service.IMaxDESCSequenceService;
-import ru.relex.spring.service.IMaxValueService;
-import ru.relex.spring.service.IMedianService;
-import ru.relex.spring.service.IMinValueService;
-import ru.relex.spring.service.IFileParserService;
-import ru.relex.spring.service.IRequestValidationService;
+import ru.relex.spring.service.arithmetic_mean.ArithmeticMeanService;
+import ru.relex.spring.service.max_sequence_numbers.max_asc_sequence.MaxASCSequenceService;
+import ru.relex.spring.service.max_sequence_numbers.max_desc_sequence.MaxDESCSequenceService;
+import ru.relex.spring.service.max_value.MaxValueService;
+import ru.relex.spring.service.median.MedianService;
+import ru.relex.spring.service.min_value.MinValueService;
+import ru.relex.spring.service.parser.FileParserService;
+import ru.relex.spring.service.validation.RequestValidationService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 @Slf4j
 @Api(tags = {"Number sequence processing part"})
 @RestController
 @RequestMapping("/api")
-public class SequenceProcessingController extends ControllerUtils {
+public class SequenceProcessingController {
 
-    private final IMaxValueService maxValueService;
-    private final IMinValueService minValueService;
-    private final IMedianService medianService;
-    private final IArithmeticMeanService arithmeticMeanService;
-    private final IMaxASCSequenceService maxASCSequenceService;
-    private final IMaxDESCSequenceService maxDESCSequenceService;
-    private final IRequestValidationService requestValidationService;
+    private final MaxValueService maxValueService;
+    private final MinValueService minValueService;
+    private final MedianService medianService;
+    private final ArithmeticMeanService arithmeticMeanService;
+    private final FileParserService fileParserService;
+    private final MaxASCSequenceService maxASCSequenceService;
+    private final MaxDESCSequenceService maxDESCSequenceService;
+    private final RequestValidationService requestValidationService;
 
-    private String currentPath_file;
-
-    @Autowired
-    public SequenceProcessingController(IFileParserService fileParserService,
-                                        IMaxValueService maxValueService,
-                                        IMinValueService minValueService,
-                                        IMedianService medianService,
-                                        IArithmeticMeanService arithmeticMeanService,
-                                        IMaxASCSequenceService maxASCSequenceService,
-                                        IMaxDESCSequenceService maxDESCSequenceService,
-                                        IRequestValidationService requestValidationService) {
-
-        super(fileParserService);
+    public SequenceProcessingController(FileParserService fileParserService,
+                                        MaxValueService maxValueService,
+                                        MinValueService minValueService,
+                                        MedianService medianService,
+                                        ArithmeticMeanService arithmeticMeanService,
+                                        MaxASCSequenceService maxASCSequenceService,
+                                        MaxDESCSequenceService maxDESCSequenceService,
+                                        RequestValidationService requestValidationService) {
+        this.fileParserService = fileParserService;
         this.maxValueService = maxValueService;
         this.minValueService = minValueService;
         this.medianService = medianService;
@@ -68,8 +64,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public MaxValueDto getMaxValue(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return maxValueService.getMaxValue(integers);
+        return maxValueService.getMaxValue(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -82,8 +77,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public MinValueDto getMinValue(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return minValueService.getMinValue(integers);
+        return minValueService.getMinValue(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -96,8 +90,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public MedianDto getMedian(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return medianService.getMedian(integers);
+        return medianService.getMedian(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -110,8 +103,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public ArithmeticMeanDto getArithmeticMean(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return arithmeticMeanService.getArithmeticMean(integers);
+        return arithmeticMeanService.getArithmeticMean(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -124,8 +116,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public MaxASCSequenceDto getMaxASCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return maxASCSequenceService.getMaxASCSequenceService(integers);
+        return maxASCSequenceService.getMaxASCSequenceService(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -138,8 +129,7 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public MaxDESCSequenceDto getMaxDESCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return maxDESCSequenceService.getMaxDESCSequenceService(integers);
+        return maxDESCSequenceService.getMaxDESCSequenceService(getFileData(request.getPath_file()));
     }
 
     @SneakyThrows
@@ -152,14 +142,10 @@ public class SequenceProcessingController extends ControllerUtils {
     )
     @ResponseBody
     public ResponseDto getRequestedOperation(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
-        return requestValidationService.validateRequest(request.getOperation(), integers);
+        return requestValidationService.validateRequest(request);
     }
 
-    private void isPossibleToWorkWithArrayOfNumbers(String pathFile) throws IOException {
-        if (CollectionUtils.isEmpty(integers) || !pathFile.equals(currentPath_file)) {
-            currentPath_file = pathFile;
-            getListOfIntegersFromTextFile(pathFile);
-        }
+    private ArrayList<Integer> getFileData(String file_path) throws IOException {
+        return fileParserService.getListOfIntegersFromTextFile(file_path);
     }
 }

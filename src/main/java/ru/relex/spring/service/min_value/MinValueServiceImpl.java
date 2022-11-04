@@ -1,9 +1,8 @@
-package ru.relex.spring.service.implementation;
+package ru.relex.spring.service.min_value;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MinValueDto;
-import ru.relex.spring.service.IMinValueService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +15,7 @@ import java.util.Collections;
  */
 @Component
 @RequiredArgsConstructor
-public class MinValueServiceImpl implements IMinValueService {
+public class MinValueServiceImpl implements MinValueService{
 
 
     /**

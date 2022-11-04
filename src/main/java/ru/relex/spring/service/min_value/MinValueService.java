@@ -1,10 +1,10 @@
-package ru.relex.spring.service;
+package ru.relex.spring.service.min_value;
 
 import ru.relex.spring.dto.MinValueDto;
 
 import java.util.ArrayList;
 
-public interface IMinValueService {
+public interface MinValueService {
 
     MinValueDto getMinValue(ArrayList<Integer> integers);
 }

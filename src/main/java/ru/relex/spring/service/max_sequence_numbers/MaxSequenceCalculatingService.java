@@ -1,4 +1,4 @@
-package ru.relex.spring.service;
+package ru.relex.spring.service.max_sequence_numbers;
 
 import java.util.ArrayList;
 import java.util.HashMap;

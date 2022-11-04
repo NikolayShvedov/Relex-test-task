@@ -1,23 +1,21 @@
-package ru.relex.spring.service.implementation;
+package ru.relex.spring.service.parser;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.relex.spring.service.IFileParserService;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Класс для считывания массива целых чисел из текстового файла "10m.txt"
  * @author Николай Шведов
- * @version 1.0.1
+ * @version 1.0.0
  */
 @Component
 @RequiredArgsConstructor
-public class FileParserServiceImpl implements IFileParserService {
+public class FileParserServiceImpl implements FileParserService {
 
     /**
      * Функция для считывания массива целых чисел из текстового файла
@@ -30,14 +28,14 @@ public class FileParserServiceImpl implements IFileParserService {
 
         ArrayList<Integer> integers = new ArrayList<>();
         try {
-            integers = (ArrayList<Integer>) Files.readAllLines(Path.of(path))
-                    .stream()
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Path.of(path)));
+            for (String values : lines)
+                integers.add(Integer.parseInt(values));
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
         return integers;
     }
 }

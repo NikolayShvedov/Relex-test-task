@@ -1,9 +1,8 @@
-package ru.relex.spring.service.implementation;
+package ru.relex.spring.service.arithmetic_mean;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.ArithmeticMeanDto;
-import ru.relex.spring.service.IArithmeticMeanService;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  */
 @Component
 @RequiredArgsConstructor
-public class ArithmeticMeanServiceImpl implements IArithmeticMeanService {
+public class ArithmeticMeanServiceImpl implements ArithmeticMeanService {
 
 
     /**
