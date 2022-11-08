@@ -1,10 +1,10 @@
-package ru.relex.spring.service.max_sequence_numbers.max_desc_sequence;
+package ru.relex.spring.service;
 
 import ru.relex.spring.dto.MaxDESCSequenceDto;
 
 import java.util.ArrayList;
 
-public interface MaxDESCSequenceService {
+public interface IMaxDESCSequenceService {
 
     MaxDESCSequenceDto getMaxDESCSequenceService(ArrayList<Integer> integers);
 }
