@@ -3,13 +3,14 @@ package ru.relex.spring.service.implementation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.relex.spring.dto.MaxASCSequenceDto;
-import ru.relex.spring.service.MaxSequenceCalculatingService;
 import ru.relex.spring.service.IMaxASCSequenceService;
+import ru.relex.spring.service.MaxSequenceCalculatingService;
 
 import java.util.ArrayList;
 
 /**
  * Класс для расчёта самой длинной последовательности идущих подряд чисел, которая увеличивается
+ *
  * @author Николай Шведов
  * @version 1.0.0
  */
@@ -19,6 +20,7 @@ public class MaxASCSequenceServiceImpl extends MaxSequenceCalculatingService imp
 
     /**
      * Функция для расчёта самой длинной последовательности идущих подряд чисел, которая увеличивается
+     *
      * @param integers - массив целых чисел из текстового файла
      * @return возвращает объект MaxASCSequenceDto, хранящий все последовательности идущих подряд чисел максимальной длины, которые увеличиваются
      */

@@ -35,6 +35,7 @@ public class RequestValidationServiceImpl implements IRequestValidationService {
 
     /**
      * Метод для обработки типа запрашиваемой операции в теле запроса
+     *
      * @param operation - выбранная операция над последовательностью чисел
      * @param integers  - массив целых чисел из текстового файла
      * @return возвращает результат запроса в зависимости от типа запрашиваемой операции
@@ -45,23 +46,17 @@ public class RequestValidationServiceImpl implements IRequestValidationService {
 
         if (operation.equals(RequestType.MAX_VALUE.getAbbreviation())) {
             return maxValueService.getMaxValue(integers);
-        }
-        else if (operation.equals(RequestType.MIN_VALUE.getAbbreviation())) {
+        } else if (operation.equals(RequestType.MIN_VALUE.getAbbreviation())) {
             return minValueService.getMinValue(integers);
-        }
-        else if (operation.equals(RequestType.MEDIAN.getAbbreviation())) {
+        } else if (operation.equals(RequestType.MEDIAN.getAbbreviation())) {
             return medianService.getMedian(integers);
-        }
-        else if (operation.equals(RequestType.ARITHMETIC_MEAN.getAbbreviation())) {
+        } else if (operation.equals(RequestType.ARITHMETIC_MEAN.getAbbreviation())) {
             return arithmeticMeanService.getArithmeticMean(integers);
-        }
-        else if (operation.equals(RequestType.MAX_ASC_SEQUENCE.getAbbreviation())) {
+        } else if (operation.equals(RequestType.MAX_ASC_SEQUENCE.getAbbreviation())) {
             return maxASCSequenceService.getMaxASCSequenceService(integers);
-        }
-        else if (operation.equals(RequestType.MAX_DESC_SEQUENCE.getAbbreviation())) {
+        } else if (operation.equals(RequestType.MAX_DESC_SEQUENCE.getAbbreviation())) {
             return maxDESCSequenceService.getMaxDESCSequenceService(integers);
-        }
-        else {
+        } else {
             return null;
         }
     }

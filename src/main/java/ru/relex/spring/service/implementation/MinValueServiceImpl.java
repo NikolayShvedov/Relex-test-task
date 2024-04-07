@@ -11,6 +11,7 @@ import java.util.Collections;
 
 /**
  * Класс для расчёта минимального числа в массиве целых чисел из текстового файла
+ *
  * @author Николай Шведов
  * @version 1.0.0
  */
@@ -21,6 +22,7 @@ public class MinValueServiceImpl implements IMinValueService {
 
     /**
      * Функция для расчёта минимального числа в массиве целых чисел
+     *
      * @param integers - массив целых чисел из текстового файла
      * @return возвращает минимальное число в массиве
      */

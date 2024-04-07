@@ -11,11 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class MedianDto extends ResponseDto{
+public class MedianDto extends ResponseDto {
 
     @JsonProperty(value = "median")
     private float median;

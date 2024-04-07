@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 abstract public class ControllerUtils {
 
-    protected static ArrayList<Integer> integers = new ArrayList<>();
+    protected static ArrayList<Integer> integers = new ArrayList<>(1_000_000);
 
     private final IFileParserService fileParserService;
 
@@ -15,7 +15,7 @@ abstract public class ControllerUtils {
         this.fileParserService = fileParserService;
     }
 
-    public void getListOfIntegersFromTextFile(String path) throws IOException {
+    protected void getListOfIntegersFromTextFile(String path) throws IOException {
         integers = fileParserService.getListOfIntegersFromTextFile(path);
     }
 }

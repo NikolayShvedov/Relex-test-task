@@ -1,4 +1,3 @@
 package ru.relex.spring.dto;
 
-public abstract class ResponseDto {
-}
+public abstract class ResponseDto {}

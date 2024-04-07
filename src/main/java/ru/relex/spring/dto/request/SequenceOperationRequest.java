@@ -4,14 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class RequestData {
+public class SequenceOperationRequest extends SequenceRequest {
 
-    private String path_file;
     private String operation;
 }

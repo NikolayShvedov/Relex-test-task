@@ -11,6 +11,7 @@ import java.util.Collections;
 
 /**
  * Класс для расчёта медианы в массиве целых чисел из текстового файла
+ *
  * @author Николай Шведов
  * @version 1.0.0
  */
@@ -21,6 +22,7 @@ public class MedianServiceImpl implements IMedianService {
 
     /**
      * Функция для расчёта медианы в массиве целых чисел
+     *
      * @param integers - массив целых чисел из текстового файла
      * @return возвращает медиану
      */

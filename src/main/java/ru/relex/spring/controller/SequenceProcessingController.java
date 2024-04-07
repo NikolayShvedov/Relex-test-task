@@ -3,13 +3,12 @@ package ru.relex.spring.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.spring.dto.*;
-import ru.relex.spring.dto.request.RequestData;
+import ru.relex.spring.dto.request.SequenceOperationRequest;
+import ru.relex.spring.dto.request.SequenceRequest;
 import ru.relex.spring.service.IArithmeticMeanService;
 import ru.relex.spring.service.IMaxASCSequenceService;
 import ru.relex.spring.service.IMaxDESCSequenceService;
@@ -22,7 +21,6 @@ import ru.relex.spring.service.IRequestValidationService;
 import java.io.IOException;
 
 
-@Slf4j
 @Api(tags = {"Number sequence processing part"})
 @RestController
 @RequestMapping("/api")
@@ -36,9 +34,8 @@ public class SequenceProcessingController extends ControllerUtils {
     private final IMaxDESCSequenceService maxDESCSequenceService;
     private final IRequestValidationService requestValidationService;
 
-    private String currentPath_file;
+    private String currentPathFile;
 
-    @Autowired
     public SequenceProcessingController(IFileParserService fileParserService,
                                         IMaxValueService maxValueService,
                                         IMinValueService minValueService,
@@ -67,8 +64,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public MaxValueDto getMaxValue(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public MaxValueDto getMaxValue(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return maxValueService.getMaxValue(integers);
     }
 
@@ -81,8 +78,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public MinValueDto getMinValue(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public MinValueDto getMinValue(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return minValueService.getMinValue(integers);
     }
 
@@ -95,8 +92,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public MedianDto getMedian(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public MedianDto getMedian(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return medianService.getMedian(integers);
     }
 
@@ -109,8 +106,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public ArithmeticMeanDto getArithmeticMean(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public ArithmeticMeanDto getArithmeticMean(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return arithmeticMeanService.getArithmeticMean(integers);
     }
 
@@ -123,8 +120,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public MaxASCSequenceDto getMaxASCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public MaxASCSequenceDto getMaxASCSequenceOfConsecutiveNumbers(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return maxASCSequenceService.getMaxASCSequenceService(integers);
     }
 
@@ -137,8 +134,8 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public MaxDESCSequenceDto getMaxDESCSequenceOfConsecutiveNumbers(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public MaxDESCSequenceDto getMaxDESCSequenceOfConsecutiveNumbers(@RequestBody SequenceRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return maxDESCSequenceService.getMaxDESCSequenceService(integers);
     }
 
@@ -151,14 +148,14 @@ public class SequenceProcessingController extends ControllerUtils {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     @ResponseBody
-    public ResponseDto getRequestedOperation(@RequestBody RequestData request) {
-        isPossibleToWorkWithArrayOfNumbers(request.getPath_file());
+    public ResponseDto getRequestedOperation(@RequestBody SequenceOperationRequest request) {
+        isPossibleToWorkWithArrayOfNumbers(request.getPathFile());
         return requestValidationService.validateRequest(request.getOperation(), integers);
     }
 
     private void isPossibleToWorkWithArrayOfNumbers(String pathFile) throws IOException {
-        if (CollectionUtils.isEmpty(integers) || !pathFile.equals(currentPath_file)) {
-            currentPath_file = pathFile;
+        if (CollectionUtils.isEmpty(integers) || !pathFile.equals(currentPathFile)) {
+            currentPathFile = pathFile;
             getListOfIntegersFromTextFile(pathFile);
         }
     }

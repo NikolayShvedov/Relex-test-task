@@ -11,11 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class MaxValueDto extends ResponseDto{
+public class MaxValueDto extends ResponseDto {
 
     @JsonProperty(value = "max_value")
     private int max_value;

@@ -11,11 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class MinValueDto extends ResponseDto{
+public class MinValueDto extends ResponseDto {
 
     @JsonProperty(value = "min_value")
     private int min_value;

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 /**
  * Класс для считывания массива целых чисел из текстового файла "10m.txt"
+ *
  * @author Николай Шведов
  * @version 1.0.1
  */
@@ -21,6 +22,7 @@ public class FileParserServiceImpl implements IFileParserService {
 
     /**
      * Функция для считывания массива целых чисел из текстового файла
+     *
      * @param path - путь к файлу 10m.txt
      * @return возвращает массив целых чисел
      * @throws IOException - неправильное чтение файла
@@ -34,8 +36,7 @@ public class FileParserServiceImpl implements IFileParserService {
                     .stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return integers;

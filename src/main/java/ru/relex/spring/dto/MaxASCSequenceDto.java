@@ -18,7 +18,7 @@ import java.util.HashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class MaxASCSequenceDto extends ResponseDto{
+public class MaxASCSequenceDto extends ResponseDto {
 
     @JsonProperty(value = "sequences_ASC")
     HashMap<String, ArrayList<Integer>> sequences_ASC;

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "data")
-public class ArithmeticMeanDto extends ResponseDto{
+public class ArithmeticMeanDto extends ResponseDto {
 
     @JsonProperty(value = "arithmetic_mean")
     private float arithmetic_mean;
